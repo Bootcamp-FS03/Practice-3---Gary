@@ -1,0 +1,28 @@
+section{
+    background-color: rgb(224, 110, 69);
+    color: white;
+    border-bottom: 1px solid rgb(224, 110, 69);
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div{
+        fill: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        
+        svg{
+            transition: all 0.3s ease-in-out;
+        &:hover{
+            fill: #4FCDF0;
+            scale: 1.2;
+        }
+        }
+    }
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
