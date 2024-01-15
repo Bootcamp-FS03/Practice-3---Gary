@@ -1,6 +1,10 @@
 # Practice-3---Gary
 
 # Proyecto 3 de FrontEnd, Red Social
+
+# Importante: Link del proyecto actualizado, (https://github.com/RonJala/angular-boilerplate)
+# Importante: Host del proyecto actualizado, (https://angular-boilerplate-beta-seven.vercel.app)
+
 ## Descripción
 El proyecto se basa en una pequeña red social, donde usuarios pueden iniciar sesion, registrarse y postear imagenes con un título breve.
 
