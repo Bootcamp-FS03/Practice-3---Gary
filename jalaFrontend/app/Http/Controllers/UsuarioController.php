@@ -86,7 +86,11 @@ class UsuarioController extends Controller
     {
         //
         $user = Usuario::find($id);
-
+        $user->name = $request->input('name');
+        $user->last_name = $request->input('last_name');
+        $user->profile_picture = $request->input('profile_picture');
+        $user->save();
+        return response()->json($user, 200);
     }
 
     public function updatePassword(Request $request, string $id)
