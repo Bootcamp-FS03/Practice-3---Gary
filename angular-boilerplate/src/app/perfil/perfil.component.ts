@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { User } from '../models/User';
-import { Post } from '../models/Post';
-import { PostService } from '../post.service';
-import { AuthService } from '../auth.service';
+import { User } from '../shared/models/User';
+import { Post } from '../shared/models/Post';
+import { PostService } from '../shared/services/post.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,7 +32,6 @@ export class PerfilComponent {
       this.router.navigate(['/login']);
     }
     this.initUser();
-    //console.log(this.user);
     this.fetchPosts();
   }
 
@@ -47,8 +46,6 @@ export class PerfilComponent {
     let userId = this.user!.id;
     this.postService.getPostsByUser(userId!).subscribe(
       (data: Post[]) => {
-        //console.log('Obteniendo posts...');
-        //console.log(data);
         this.posts = data;
       },
       (error) => {
@@ -65,27 +62,27 @@ export class PerfilComponent {
     }
     this.authService.updatePassword(this.user!.id!, this.editedUser.password).subscribe(
       res => {
-        //console.log(res);
         alert('Contraseña actualizada');
         window.location.reload();
       },
       err => {
-        //console.log(err);
       }
     );
   }
 
 
   deletePost(id: number | undefined) {
+    const isUserSure = window.confirm('¿Estás seguro de que deseas eliminar este post?');
+    if(!isUserSure){
+      return;
+    }
     this.postService.deletePost(id!).subscribe(
       (res) => {
-        //console.log(res);
           this.fetchPosts();
           window.location.reload();
 
       },
       (err) => {
-        //console.log(err);
       }
     );
   }
@@ -93,12 +90,10 @@ export class PerfilComponent {
   actualizarDatos(){
     this.authService.updateUser(this.user!.id!, this.editedUser).subscribe(
       res => {
-        //console.log(res);
         alert('Datos actualizados');
         window.location.reload();
       },
       err => {
-        //console.log(err);
       }
     );
   }

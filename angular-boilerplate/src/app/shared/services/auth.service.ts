@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginUser } from './models/LoginUser';
-import { User } from './models/User';
+import { LoginUser } from '../models/LoginUser';
+import { User } from '../models/User';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -25,7 +25,6 @@ export class AuthService {
     );
 
     if (userFound) {
-      //console.log(userFound);
       return of(userFound);
     }
 
@@ -109,7 +108,6 @@ export class AuthService {
 
     localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios));
 
-    //console.log(user);
 
     return of(user);
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { PostService } from '../post.service';
+import { AuthService } from '../shared/services/auth.service';
+import { PostService } from '../shared/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Post } from '../models/Post';
+import { Post } from '../shared/models/Post';
 
 @Component({
   selector: 'app-post',
@@ -35,8 +35,6 @@ export class PostComponent {
   fetchPost(){
     this.service.getPostsByID(this.id!).subscribe(
       (data: any) => {
-        //console.log('Obteniendo posts...');
-        //console.log(data);
         this.post = data;
       },
       (error) => {
@@ -55,12 +53,10 @@ export class PostComponent {
   actualizarPost(){
     this.service.updatePost(this.id!, this.post).subscribe(
       res => {
-        //console.log(res);
         this.router.navigate(['/home']);
       },
       err => {
         alert('Error al actualizar el post, intenta de nuevo');
-        //console.log(err);
       }
     );
   }
@@ -73,10 +69,8 @@ export class PostComponent {
     }
     this.service.createPost(newPost).subscribe(
       res => {
-        //console.log(res);
       },
       err => {
-        //console.log(err);
       }
     );
   }

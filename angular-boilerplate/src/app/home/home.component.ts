@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Post } from '../models/Post';
-import { AuthService } from '../auth.service';
+import { Post } from '../shared/models/Post';
+import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { PostService } from '../post.service';
+import { PostService } from '../shared/services/post.service';
 
 @Component({
   selector: 'app-home',
@@ -34,8 +34,6 @@ export class HomeComponent {
   fetchPosts(){
     this.service.getPosts().subscribe(
       (data: Post[]) => {
-        //console.log('Obteniendo posts...');
-        //console.log(data);
         this.posts = data;
       },
       (error) => {
@@ -52,11 +50,9 @@ export class HomeComponent {
     }
     this.service.createPost(newPost).subscribe(
       res => {
-        //console.log(res);
         this.fetchPosts();
       },
       err => {
-        //console.log(err);
       }
     );
     this.post.text = '';
@@ -64,16 +60,19 @@ export class HomeComponent {
   }
 
   deletePost(id : number | undefined){
+    const isUserSure = window.confirm('¿Estás seguro de que deseas eliminar este post?');
+    if(!isUserSure){
+      return;
+    }
     this.service.deletePost(id!).subscribe(
       res => {
-        //console.log(res);
         this.fetchPosts();
         if(res == 204){
           this.fetchPosts();
         }
       },
       err => {
-        //console.log(err);
+        console.log(err);
       }
     );
   }

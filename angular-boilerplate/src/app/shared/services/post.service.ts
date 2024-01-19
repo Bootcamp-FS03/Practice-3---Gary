@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Post } from './models/Post';
+import { Post } from '../models/Post';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -35,9 +35,7 @@ export class PostService {
       ? JSON.parse(localStorage.getItem('listaPosts') || '{}')
       : [];
 
-    //console.log('Buscando posts con el id:', id);
     let post = listaPosts.find((post) => post.id == id);
-    //console.log(post);
 
     return of(listaPosts.find((post) => post.id == id));
 

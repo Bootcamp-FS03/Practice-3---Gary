@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginUser } from '../models/LoginUser';
-import { AuthService } from '../auth.service';
+import { LoginUser } from '../../shared/models/LoginUser';
+import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,7 +22,6 @@ export class LoginComponent {
     this.service.login(this.loginUser).subscribe(
       res => {
         localStorage.setItem('currentUser', JSON.stringify(res));
-        //console.log(localStorage.getItem('currentUser'));
         setTimeout(() => {
           this.router.navigate(['/home']);
           
@@ -30,7 +29,6 @@ export class LoginComponent {
       },
       err => {
         alert('Error al iniciar sesion, intenta de nuevo');
-        //console.log(err);
       }
     );
   }

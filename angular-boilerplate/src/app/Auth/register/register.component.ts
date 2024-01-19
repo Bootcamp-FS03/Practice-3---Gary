@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../models/User';
+import { User } from '../../shared/models/User';
 
 @Component({
   selector: 'app-register',
@@ -52,15 +52,11 @@ export class RegisterComponent {
       return;
     }
     
-  
-    //console.log(this.user);
     this.service.register(this.user).subscribe(
       res => {
-        //console.log(res);
         this.router.navigate(['/login']);
          },
       err => {
-        //console.log(err);
       }
     );
   
